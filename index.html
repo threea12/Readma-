@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f3eb">
+  <meta name="description" content="Three A — votre boutique d’ebooks à Djibouti. Paiement par Waafi et réception par WhatsApp.">
+  <title>Three A — Boutique d’ebooks</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#f6f3eb;--paper:#fffefa;--ink:#172b28;--muted:#66736d;--green:#146b55;--line:#e4e0d6;--gold:#e5b961;--shadow:0 14px 36px #172b2812}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;line-height:1.55}button,a{font:inherit}.shell{width:min(1080px,calc(100% - 40px));margin:auto}
+    header{padding:24px 0}.nav{display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{font-family:Manrope,sans-serif;font-weight:800;font-size:1.35rem;letter-spacing:-.06em}.brand span{color:var(--green)}.waafi-tag{font-size:.88rem;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:8px 13px}
+    .hero{padding:64px 0 42px;display:grid;grid-template-columns:1.3fr .7fr;gap:28px;align-items:center}.eyebrow{text-transform:uppercase;letter-spacing:.14em;color:var(--green);font-size:.78rem;font-weight:700}.hero h1{font:800 clamp(2.7rem,7vw,5.2rem)/1.02 Manrope,sans-serif;letter-spacing:-.065em;margin:12px 0 18px;max-width:11ch}.hero p{color:var(--muted);font-size:1.1rem;max-width:48ch;margin:0}.hero-card{background:var(--green);color:white;border-radius:20px;padding:28px;min-height:220px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:var(--shadow)}.hero-card .big{font:800 2.4rem Manrope,sans-serif;letter-spacing:-.06em}.hero-card p{color:#e1eee8;margin:8px 0 0;font-size:.95rem}.spark{font-size:2rem;color:var(--gold)}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:16px;padding:22px 0 8px}.section-head h2{font:700 1.65rem Manrope,sans-serif;margin:0;letter-spacing:-.04em}.section-head p{margin:0;color:var(--muted);font-size:.92rem}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;padding:18px 0 58px}.book{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:14px;display:flex;flex-direction:column;box-shadow:0 3px 14px #172b2806}.cover{aspect-ratio:4/4.5;border-radius:11px;padding:18px;color:white;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(145deg,#244b43,#102b27);box-shadow:inset 7px 0 #0002}.cover.c2{background:linear-gradient(145deg,#4d568b,#252b51)}.cover.c3{background:linear-gradient(145deg,#b9714c,#713e36)}.cover.c4{background:linear-gradient(145deg,#467e79,#214d4b)}.cover small{opacity:.82;text-transform:uppercase;letter-spacing:.12em;font-size:.68rem}.cover strong{font:800 1.28rem/1.12 Manrope,sans-serif;letter-spacing:-.04em}.book h3{font:700 1.05rem/1.3 Manrope,sans-serif;margin:16px 0 7px}.book p{color:var(--muted);font-size:.88rem;margin:0 0 16px}.purchase{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:10px}.price{font-weight:700;white-space:nowrap}.buy{border:0;border-radius:9px;background:var(--green);color:white;padding:10px 13px;font-weight:700;cursor:pointer;min-height:42px}.buy:hover{background:#0d5644}.buy:focus-visible,a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+    .steps{border-top:1px solid var(--line);padding:30px 0 54px}.steps h2{font:700 1.5rem Manrope,sans-serif;margin:0 0 18px}.step-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.step{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px}.step b{color:var(--green)}.step p{margin:6px 0 0;color:var(--muted);font-size:.92rem}footer{border-top:1px solid var(--line);padding:20px 0 30px;color:var(--muted);font-size:.88rem;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    dialog{width:min(460px,calc(100% - 24px));border:1px solid var(--line);border-radius:18px;padding:24px;background:var(--paper);color:var(--ink);box-shadow:var(--shadow)}dialog::backdrop{background:#11211dcc}.close{float:right;border:0;background:none;color:var(--muted);font-size:1.5rem;cursor:pointer}.modal-title{font:700 1.35rem Manrope,sans-serif;margin:8px 30px 4px 0}.modal-price{font:800 1.8rem Manrope,sans-serif;margin:0 0 12px;color:var(--green)}.modal-text{color:var(--muted);font-size:.94rem}.number{font-weight:700;background:var(--bg);padding:12px;border-radius:9px;display:flex;justify-content:space-between;align-items:center}.copy{border:1px solid var(--line);border-radius:7px;background:var(--paper);padding:6px 10px;cursor:pointer}.modal-note{background:#f4ecd8;padding:11px;border-radius:9px;font-size:.86rem;color:#554b35}.send{width:100%;margin-top:8px}
+    @media(max-width:850px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{grid-template-columns:1fr .75fr}}@media(max-width:600px){.shell{width:min(100% - 28px,480px)}.hero{grid-template-columns:1fr;padding:44px 0 28px}.hero-card{min-height:165px}.section-head{align-items:start;flex-direction:column}.grid{gap:12px}.book{padding:10px}.cover{padding:14px}.cover strong{font-size:1.05rem}.purchase{align-items:start;flex-direction:column}.buy{width:100%}.step-grid{grid-template-columns:1fr}.waafi-tag{font-size:.75rem;padding:7px 9px}}
+  </style>
+</head>
+<body>
+  <header class="shell"><div class="nav"><a class="brand" href="#accueil" aria-label="Three A, accueil">Three <span>A.</span></a><span class="waafi-tag">Paiement sécurisé par Waafi</span></div></header>
+  <main>
+    <section class="shell hero" id="accueil">
+      <div><span class="eyebrow">La lecture à portée de main</span><h1>Des idées qui vous font avancer.</h1><p>Bienvenue chez Three A, votre boutique d’ebooks. Choisissez votre guide, payez avec Waafi et recevez-le sur WhatsApp après vérification.</p></div>
+      <aside class="hero-card"><div class="spark" aria-hidden="true">✳</div><div><div class="big">Lire. Apprendre. Grandir.</div><p>Vos prochains ebooks, simplement et directement sur votre téléphone.</p></div></aside>
+    </section>
+    <section class="shell" aria-labelledby="catalogue-title"><div class="section-head"><h2 id="catalogue-title">Nos ebooks</h2><p>Choisissez un titre pour commencer.</p></div><div class="grid" id="products"></div></section>
+    <section class="steps"><div class="shell"><h2>Comment commander ?</h2><div class="step-grid"><article class="step"><b>01 — Choisissez</b><p>Sélectionnez l’ebook qui vous intéresse et notez le montant affiché.</p></article><article class="step"><b>02 — Payez avec Waafi</b><p>Envoyez le montant exact au <strong>77680177</strong> depuis votre compte Waafi.</p></article><article class="step"><b>03 — Envoyez la preuve</b><p>Contactez-nous sur WhatsApp au <strong>77680177</strong> avec la référence de transaction. Nous vérifierons le paiement et vous enverrons l’ebook.</p></article></div></div></section>
+  </main>
+  <footer class="shell"><span>© <span id="year"></span> Three A — Boutique d’ebooks</span><span>Waafi : 77680177 · WhatsApp : 77680177</span></footer>
+  <dialog id="order" aria-labelledby="modal-title"><button class="close" id="close" aria-label="Fermer">×</button><h2 class="modal-title" id="modal-title"></h2><p class="modal-price" id="modal-price"></p><p class="modal-text">1. Envoyez le montant exact avec Waafi à ce numéro :</p><div class="number"><span>77680177</span><button class="copy" id="copy" type="button">Copier</button></div><p class="modal-text">2. Envoyez-nous la référence du paiement sur WhatsApp.</p><p class="modal-note">Votre ebook sera envoyé après vérification du paiement. Cette boutique ne traite pas les paiements automatiquement.</p><button class="buy send" id="send" type="button">Continuer sur WhatsApp</button></dialog>
+  <script>
+    const products = [
+      {title:'Réussir le BAC S Djibouti', category:'Études & examens', description:'Annales corrigées, cours complets et formulaires : maths, physique-chimie et SVT.', price:1000, color:'c1'},
+      {title:'Le Trading de A à Z', category:'Finance & investissement', description:'Day trading, crypto, analyse technique, gestion du risque et plan sur 90 jours.', price:700, color:'c2'},
+      {title:'Le Guide du Parent Moderne', category:'Vie & famille', description:'Communiquer, encourager et créer des routines. Défi de 7 jours et fiches à imprimer.', price:200, color:'c3'},
+      {title:'De 0 à ton premier client avec l’IA', category:'Business & technologie', description:'Un guide pour débuter et proposer des services utiles aux commerces de votre ville.', price:600, color:'c4'}
+    ];
+    const formatPrice = n => new Intl.NumberFormat('fr-FR').format(n) + ' FDJ';
+    const grid = document.getElementById('products');
+    products.forEach((product, index) => {
+      const card = document.createElement('article');
+      card.className = 'book';
+      const cover = document.createElement('div'); cover.className = 'cover ' + product.color;
+      const category = document.createElement('small'); category.textContent = product.category;
+      const titleOnCover = document.createElement('strong'); titleOnCover.textContent = product.title;
+      cover.append(category, titleOnCover);
+      const title = document.createElement('h3'); title.textContent = product.title;
+      const description = document.createElement('p'); description.textContent = product.description;
+      const purchase = document.createElement('div'); purchase.className = 'purchase';
+      const price = document.createElement('span'); price.className = 'price'; price.textContent = formatPrice(product.price);
+      const button = document.createElement('button'); button.className = 'buy'; button.type = 'button'; button.textContent = 'Acheter'; button.dataset.index = index;
+      purchase.append(price, button); card.append(cover, title, description, purchase); grid.append(card);
+    });
+    const dialog = document.getElementById('order'); let selected = null;
+    grid.addEventListener('click', event => {
+      const button = event.target.closest('button[data-index]'); if (!button) return;
+      selected = products[Number(button.dataset.index)];
+      document.getElementById('modal-title').textContent = selected.title;
+      document.getElementById('modal-price').textContent = formatPrice(selected.price);
+      document.getElementById('copy').textContent = 'Copier'; dialog.showModal();
+    });
+    document.getElementById('close').addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
+    document.getElementById('copy').addEventListener('click', async event => {
+      try { await navigator.clipboard.writeText('77680177'); event.currentTarget.textContent = 'Copié'; }
+      catch { event.currentTarget.textContent = 'Numéro : 77680177'; }
+    });
+    document.getElementById('send').addEventListener('click', () => {
+      if (!selected) return;
+      const message = `Bonjour Three A, je souhaite acheter : ${selected.title}. Montant : ${formatPrice(selected.price)}. Voici ma référence de transaction Waafi : `;
+      window.open('https://wa.me/25377680177?text=' + encodeURIComponent(message), '_blank', 'noopener,noreferrer');
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
