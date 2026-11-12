@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Révise ton Bac S</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+<style>
+:root{--bg:#F4F6FB;--surface:#FFFFFF;--ink:#14204A;--muted:#55607F;--line:#D9DEEC;--gold:#F0BE32;--gold-ink:#14204A;--good:#1F8A4C;--bad:#C0392B;--tint:#E9EDF8;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0C1330;--surface:#16204A;--ink:#EEF1FA;--muted:#A7B0D0;--line:#27346A;--good:#4CC47E;--bad:#FF7B6B;--tint:#1E2A5C;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0C1330;--surface:#16204A;--ink:#EEF1FA;--muted:#A7B0D0;--line:#27346A;--good:#4CC47E;--bad:#FF7B6B;--tint:#1E2A5C;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5}
+.wrap{max-width:560px;margin:0 auto;padding:24px 18px 48px}
+h1{font-size:clamp(1.9rem,8vw,2.6rem);line-height:1.08;margin:8px 0;font-weight:700;letter-spacing:-.02em}
+h1 span{color:var(--gold)}
+h2{font-size:1.5rem;margin:6px 0 8px}
+.sub{color:var(--muted);margin:0 0 22px}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.card{display:flex;align-items:center;gap:16px;width:100%;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:12px;min-height:72px}
+.card:hover{border-color:var(--gold)}
+.ico{flex:none;width:50px;height:50px;border-radius:12px;background:var(--tint);display:grid;place-items:center;font-size:1.5rem}
+.card b{display:block}.card small{color:var(--muted)}
+.best{margin-left:auto;font-weight:700;color:var(--gold);white-space:nowrap}
+.pro{background:var(--gold);color:var(--gold-ink);border:0;border-radius:14px;padding:14px 16px;width:100%;text-align:left;margin-bottom:18px;font-weight:600}
+.pro small{display:block;font-weight:400}
+.badge{display:inline-block;background:var(--gold);color:var(--gold-ink);border-radius:99px;padding:2px 12px;font-size:.8rem;font-weight:700;margin-bottom:10px}
+.bar{height:8px;background:var(--tint);border-radius:99px;overflow:hidden;margin:6px 0 22px}
+.bar i{display:block;height:100%;background:var(--gold);transition:width .25s}
+.top{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:.9rem}
+.link{background:none;border:0;color:var(--muted);padding:8px 0;text-decoration:underline}
+.q{font-size:1.2rem;font-weight:600;margin:0 0 18px}
+.opt{display:block;width:100%;text-align:left;background:var(--surface);border:2px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:10px;min-height:52px}
+.opt:hover:not(:disabled){border-color:var(--gold)}
+.opt.ok{border-color:var(--good);background:color-mix(in srgb,var(--good) 14%,var(--surface))}
+.opt.ko{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 14%,var(--surface))}
+.opt.sel{border-color:var(--gold)}
+.opt:disabled{cursor:default}
+.exp{background:var(--tint);border-radius:12px;padding:12px 14px;margin:14px 0;font-size:.95rem}
+.cta{display:block;text-align:center;text-decoration:none;background:var(--gold);color:var(--gold-ink);border:0;border-radius:12px;font-weight:700;padding:14px 22px;min-height:50px;width:100%;margin-bottom:10px}
+.cta.alt{background:var(--surface);border:2px solid var(--gold)}
+.big{font-size:3.4rem;font-weight:700;margin:8px 0;line-height:1}
+.center{text-align:center}
+.timer{font-weight:700;color:var(--gold)}
+.steps{padding-left:20px;margin:0 0 18px}.steps li{margin-bottom:6px}
+.num{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-weight:700;font-size:1.3rem;margin:6px 0 16px}
+input{width:100%;padding:14px;border:2px solid var(--line);border-radius:12px;background:var(--surface);margin-bottom:10px;text-transform:uppercase}
+.err{color:var(--bad);min-height:1.4em;margin:0 0 8px;font-size:.92rem}
+.rev{border-left:4px solid var(--bad);padding:6px 0 6px 12px;margin:14px 0;font-size:.95rem;text-align:left}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+<script>
+var PRICE = "500 FDJ", WAAFI = "77680177", WA = "25377680177", FREE = 4, EXAM_N = 4, EXAM_SEC = 720;
+var HASHES = ["11cf123441bbac1150280583d045d7d0bc62ecedb13ecfd599fd7005d40a5154", "ad33aade6d5c13fbf13d7a4e40d632ca9c0f0c3398787aecefcd9814fb148672", "a757881beedc71b31501e2bf31c9df406aeb21260ccf5f90b8bd7ba29126bdf7", "f4c7aa576b4f64775e379deb2a88ef4bbfb34ec02c7d7c0cebdbad7fc6fef0b7", "1528313ebc79b68d42d2dd5b4a09502255a3d9bb280e91595455e632c15eba68", "844eb1b1cecf2c5f501efaaf9c81dc1c2588e44ea36f7ed75fc717d7c3bfb6a7", "139be2d3478e4bd217cdefbcd6e70d2e64fe1cb22d19dab34ef0aba8d288f57d", "52d20a57801f5ec57a20196498faaf70e5824ed8e244af34faf866ef83b0cc02", "1b96909525af78fc8788623e5d577ff018726bdc52650733afda22350c90640b", "3da79b551c38d930acc255da0890234b24563d00247acc43eb53792d9ad6ecf9", "f29bc5ac6693fd1c5f6e1c172d51922d3d74c596bb93f7c4ccce8b9aaf503042", "c8d6d4f3bc15d455b2fc8ecaad599c2df99cb7733ad4102a50efdaea9c756023", "cfc35dffe876e19bbebf8159974184d245db58d6803a0234cad55327289c047a", "e94df5c0e87c91797c3256bb6b3bd3b7aee948f474a1531679bddcb6724bfc8a", "ee101f6c470c06f768afe0f245be046ee7dff538b7d79dea465949ccbed96066", "346d8dbd13b178a4a6d5d300839b0ae224b907e32772d3eac8023b839155d361", "df9c4b608419652c325d7f75f6863c6b4298a10ffc3de85a7e4041070c1d0777", "f9ccfb766b8467f27c76db42f4f57c46dd16d3bb258e448d387b118694fb61e1", "b569f389318d4f462e78140cd456d44313786677badaf9bcd0af8bb670d333f1", "c0fa38421b7545954f77ccde87a719e1bad76ee9d7e5e53971d1be1342f73020", "11ced53f038ac234a99364e0e34812f555303ac020cc9d34156a3dfc4d26be24", "2070be1344101f45953c98cb26d2cf0be35c157277b959c67f0bd21a493f7bab", "6dc5bb285efc6a219ad178cd9110d2775e1e4b6ee4b3ded0185f4c013d899480", "191f16bef495994966e39116da104bffaa9931435fffb2d688aa62c27b2de9b4", "862c71a8d83cd1275aa9ea207fb18120a41faed283d47adcd6b3675e1649c327", "3396210a08b400afe7096252310005ca59f7aa806ef874e36fbff701d9a3ef43", "a4d2ac450e67aff8a2f1c43a86511943afd9571e2633bd203b4a7633c2aefa14", "efe9a8d63d9cc26e0f03d6fff6a35b0235e6163789675842e612c0f676f714ed", "f6381efb8fa3cc5c08358b01fdba832ba325baca48e2ed6c963279c0bba493d6", "99fa7da76b3fb462d8a5edf21da5c84ed9844d4e0ef53c4eae769a2475633416"];
+var DATA = [
+ {id:"maths", name:"Mathématiques", ico:"∑", qs:[
+  {q:"Pour une suite géométrique de raison q avec −1 < q < 1, que vaut la limite de qⁿ ?", o:["0","+∞","1","Pas de limite"], e:"Si −1 < q < 1, qⁿ tend vers 0."},
+  {q:"Que vaut la somme 1 + 2 + 3 + … + n ?", o:["n(n + 1)/2","n²","n(n − 1)/2","n + 1"], e:"On associe le premier et le dernier terme : chaque paire donne n + 1."},
+  {q:"Dans un raisonnement par récurrence, que démontre-t-on à l’étape d’hérédité ?", o:["Que P(n) vraie entraîne P(n + 1) vraie","Que P(0) est vraie","Que P(n) est fausse","Que P(n) est vraie pour tout n directement"], e:"L’hérédité : si P(n) est vraie, alors P(n + 1) l’est aussi."},
+  {q:"Quelle fonction est égale à sa propre dérivée ?", o:["eˣ","ln x","x²","1/x"], e:"La fonction exponentielle vérifie f’ = f."},
+  {q:"Si e³ ≈ 20,1, que vaut approximativement ln(20,1) ?", o:["3","e","20,1","1/3"], e:"ln x est l’exposant qu’il faut donner à e pour obtenir x."},
+  {q:"Soit z = 1 + i√3. Quel est son module ?", o:["2","1","√3","4"], e:"|z| = √(1 + 3) = 2, et z = 2·e^(iπ/3)."},
+  {q:"A, B, C sont alignés si et seulement si Q = (zC − zA)/(zB − zA) est :", o:["un réel","un imaginaire pur","égal à i","de module 1"], e:"Q réel : les vecteurs AB et AC sont colinéaires."},
+  {q:"Deux vecteurs de l’espace sont orthogonaux si :", o:["leur produit scalaire est nul","ils sont colinéaires","leurs normes sont égales","leur somme est nulle"], e:"u·v = xx’ + yy’ + zz’ = 0 ⇔ u ⟂ v."}
+ ]},
+ {id:"pc", name:"Physique-Chimie", ico:"⚛", qs:[
+  {q:"Caisse sans frottement sur un plan incliné de 30°. Quelle est son accélération (g = 9,8) ?", o:["4,9 m·s⁻²","9,8 m·s⁻²","8,5 m·s⁻²","2,5 m·s⁻²"], e:"a = g·sin α = 9,8 × sin 30° = 4,9 m·s⁻²."},
+  {q:"Un objet tombe en chute libre de 20 m. Quelle est la durée de chute ?", o:["environ 2 s","environ 4 s","environ 1 s","environ 10 s"], e:"t = √(2z/g) = √(40/9,8) ≈ 2,0 s."},
+  {q:"Pour quel angle de tir la portée d’un projectile est-elle maximale ?", o:["45°","30°","60°","90°"], e:"La portée L = v₀²·sin 2α / g est maximale pour α = 45°."},
+  {q:"Avec R = 10 kΩ et C = 100 µF, quelle est la constante de temps τ = RC ?", o:["1 s","10 s","0,1 s","100 s"], e:"τ = 10⁴ × 10⁻⁴ = 1 s."},
+  {q:"Charge d’un condensateur : quelle fraction de E atteint uC à t = τ ?", o:["63 %","37 %","50 %","100 %"], e:"uC(τ) = 0,63·E en charge (0,37·E en décharge)."},
+  {q:"Pour une bobine L = 0,50 H en série avec R = 100 Ω, quelle est la constante de temps ?", o:["5 ms","50 ms","0,5 s","200 s"], e:"τ = L/R = 0,50/100 = 5 ms."},
+  {q:"L’iode 131 a une demi-vie de 8 jours. Quelle part reste-t-il après 24 jours ?", o:["12,5 %","25 %","50 %","3 %"], e:"24 jours = 3 demi-vies : (1/2)³ = 12,5 %."},
+  {q:"À la demi-équivalence du dosage d’un acide faible, le pH est égal à :", o:["pKA","7","pKA / 2","14 − pKA"], e:"Quand V = Véq/2, [acide] = [base conjuguée], donc pH = pKA."}
+ ]},
+ {id:"svt", name:"SVT", ico:"🧬", qs:[
+  {q:"Où a lieu la transcription d’un gène en ARN messager ?", o:["Dans le noyau","Dans le ribosome","Dans la mitochondrie","Dans la membrane"], e:"L’ARN polymérase copie le gène dans le noyau."},
+  {q:"Quelle base remplace la thymine (T) dans l’ARN messager ?", o:["L’uracile (U)","L’adénine (A)","La cytosine (C)","La guanine (G)"], e:"L’ARNm contient U à la place de T, et le sucre ribose."},
+  {q:"Quel est le codon d’initiation de la traduction ?", o:["AUG","UAA","UGA","GGA"], e:"AUG code la méthionine. UAA, UAG et UGA sont des codons stop."},
+  {q:"Le brin transcrit est TAC CCT GAA. Quel est l’ARNm correspondant ?", o:["AUG GGA CUU","ATG GGA CTT","UAC CCU GAA","AUG CCU GAA"], e:"On prend le complément : T→A, A→U, C→G, G→C."},
+  {q:"Un codon GGA devient GGG et code toujours Gly. Quelle mutation est-ce ?", o:["Une mutation silencieuse","Une délétion","Une mutation non-sens","Un décalage du cadre de lecture"], e:"Le code génétique est redondant : la protéine ne change pas."},
+  {q:"Qu’est-ce qui distingue l’hémoglobine S (drépanocytose) de l’hémoglobine normale ?", o:["Un seul acide aminé","Un chromosome en plus","Le groupe sanguin","Le nombre de globules"], e:"Un seul acide aminé change et déforme les globules rouges."},
+  {q:"Que montre le caryotype d’une personne atteinte de trisomie 21 ?", o:["3 chromosomes 21","1 chromosome 21","3 chromosomes X","46 paires"], e:"Le caryotype classe les chromosomes par paires et révèle les anomalies."},
+  {q:"Que sont les enzymes ?", o:["Des protéines qui catalysent des réactions","Des lipides de réserve","Des fragments d’ADN","Des glucides"], e:"Elles sont spécifiques d’un substrat et sensibles à la température et au pH."}
+ ]}
+];
+var app = document.getElementById("app"), store = {}, S = null;
+try { store = JSON.parse(localStorage.getItem("bacs") || "{}"); } catch(e) { store = {}; }
+function save(){ try { localStorage.setItem("bacs", JSON.stringify(store)); } catch(e) {} }
+function shuffle(a){ a=a.slice(); for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;} return a; }
+function mk(q,s){ return {q:q.q, e:q.e, s:s, opts:shuffle(q.o.map(function(t,k){return {t:t, ok:k===0};}))}; }
+function stop(){ if (S && S.timer) clearInterval(S.timer); }
+function fmt(s){ return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2); }
+function home(){
+  stop(); S = null; var p = store.premium;
+  var h = '<h1>Révise ton <span>Bac S</span></h1><p class="sub">Des questions tirées de ton cours, avec la correction après chaque réponse.</p>';
+  h += p ? '<span class="badge">✓ Premium activé</span>' : '<button class="pro" data-go="premium">✨ Débloque tout : toutes les questions + examen blanc<small>Accès complet pour '+PRICE+', paiement par Waafi</small></button>';
+  DATA.forEach(function(d,i){
+    var b = store[d.id];
+    h += '<button class="card" data-i="'+i+'"><span class="ico">'+d.ico+'</span><span><b>'+d.name+'</b><small>'+(p ? d.qs.length+' questions' : FREE+' gratuites · '+(d.qs.length-FREE)+' premium')+'</small></span>'+(b!=null?'<span class="best">'+b+'</span>':'')+'</button>';
+  });
+  h += '<button class="card" data-go="exam"><span class="ico">⏱</span><span><b>Examen blanc</b><small>'+(EXAM_N*3)+' questions · '+Math.round(EXAM_SEC/60)+' min · '+(p?'toutes matières':'🔒 premium')+'</small></span></button>';
+  app.innerHTML = h;
+}
+function start(i){
+  var d = DATA[i], pool = store.premium ? d.qs : d.qs.slice(0,FREE);
+  S = {mode:"train", d:d, qs:shuffle(pool).map(function(q){return mk(q,d.name);}), n:0, score:0, done:false, wrong:[]};
+  question();
+}
+function startExam(){
+  if (!store.premium) { premium(); return; }
+  var qs = []; DATA.forEach(function(d){ shuffle(d.qs).slice(0,EXAM_N).forEach(function(q){ qs.push(mk(q,d.name)); }); });
+  S = {mode:"exam", qs:shuffle(qs), n:0, score:0, done:false, wrong:[], left:EXAM_SEC};
+  S.timer = setInterval(function(){ S.left--; var el=document.getElementById("tm"); if(el) el.textContent=fmt(S.left); if(S.left<=0){ result(true); } },1000);
+  question();
+}
+function question(){
+  var q = S.qs[S.n], t = S.qs.length, ex = S.mode==="exam";
+  var h = '<div class="top"><button class="link" data-go="home">← Accueil</button><span>'+(ex?'Examen blanc':S.d.name)+' · '+(S.n+1)+'/'+t+(ex?' · <span class="timer" id="tm">'+fmt(S.left)+'</span>':'')+'</span></div><div class="bar"><i style="width:'+(S.n/t*100)+'%"></i></div>';
+  if (ex) h += '<p class="sub" style="margin:0 0 6px">'+q.s+'</p>';
+  h += '<p class="q">'+q.q+'</p>';
+  q.opts.forEach(function(o,k){ h += '<button class="opt" data-k="'+k+'">'+o.t+'</button>'; });
+  app.innerHTML = h + '<div id="fb"></div>'; window.scrollTo(0,0);
+}
+function answer(k){
+  if (S.done) return; S.done = true;
+  var q = S.qs[S.n], good = q.opts[k].ok, btns = app.querySelectorAll(".opt");
+  if (good) S.score++; else S.wrong.push(q);
+  if (S.mode==="exam") { btns[k].classList.add("sel"); btns.forEach(function(b){b.disabled=true;}); setTimeout(next,350); return; }
+  btns.forEach(function(b,i){ b.disabled = true; if (q.opts[i].ok) b.classList.add("ok"); else if (i===k) b.classList.add("ko"); });
+  var last = S.n === S.qs.length-1;
+  document.getElementById("fb").innerHTML = '<div class="exp"><b>'+(good?"Bravo !":"Pas tout à fait.")+'</b> '+q.e+'</div><button class="cta" data-go="next">'+(last?"Voir mon score":"Question suivante")+'</button>';
+}
+function next(){ if(!S) return; S.done=false; S.n++; if (S.n < S.qs.length) question(); else result(false); }
+function result(timeout){
+  stop(); var t = S.qs.length, s = S.score, ex = S.mode==="exam", title = ex?"Examen blanc":S.d.name;
+  if (!ex) { var prev = store[S.d.id]; if (prev==null || s>parseInt(prev)) { store[S.d.id] = s+"/"+t; save(); } }
+  var m = timeout ? "Temps écoulé !" : s===t ? "Parfait ! Tu maîtrises." : s>=t*0.6 ? "Bien joué, continue." : "Courage, relis le cours et réessaie.";
+  var h = '<div class="center"><p class="sub">'+title+'</p><div class="big">'+s+'/'+t+'</div><p>'+m+'</p>';
+  if (ex && S.wrong.length) { h += '<h2>À revoir</h2>'; S.wrong.slice(0,6).forEach(function(q){ var r=q.opts.filter(function(o){return o.ok;})[0].t; h += '<div class="rev"><b>'+q.q+'</b><br>Bonne réponse : '+r+'<br>'+q.e+'</div>'; }); }
+  if (!ex && !store.premium) h += '<button class="cta" data-go="premium">✨ Débloque les autres questions</button>';
+  h += '<button class="cta '+((!ex&&!store.premium)?'alt':'')+'" data-go="again">Recommencer</button><button class="link" data-go="home">← Accueil</button></div>';
+  app.innerHTML = h; window.scrollTo(0,0);
+}
+function premium(msg){
+  stop();
+  var wa = "https://wa.me/"+WA+"?text="+encodeURIComponent("Bonjour, j’ai payé "+PRICE+" par Waafi pour l’accès premium « Révise ton Bac S ». Référence de la transaction : ");
+  app.innerHTML = '<div class="top"><button class="link" data-go="home">← Accueil</button></div><h2>✨ Accès premium</h2><p class="sub">Toutes les questions de chaque matière + l’examen blanc chronométré. Prix : <b>'+PRICE+'</b>, une seule fois.</p>' +
+   '<ol class="steps"><li>Envoie '+PRICE+' par <b>Waafi</b> au numéro :</li></ol><div class="num">'+WAAFI+'</div>' +
+   '<a class="cta" href="'+wa+'" target="_blank" rel="noopener">J’ai payé : envoyer ma preuve sur WhatsApp</a>' +
+   '<p class="sub" style="margin-top:16px">Tu reçois ton code après vérification du paiement. Entre-le ici :</p>' +
+   '<input id="code" placeholder="Ton code" autocomplete="off" autocapitalize="characters"><p class="err" id="err">'+(msg||"")+'</p><button class="cta alt" data-go="unlock">Débloquer</button>';
+}
+async function unlock(){
+  var v = document.getElementById("code").value.trim().toUpperCase(), err = document.getElementById("err");
+  if (!v) { err.textContent = "Entre ton code."; return; }
+  try {
+    var b = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(v));
+    var h = Array.from(new Uint8Array(b)).map(function(x){return ("0"+x.toString(16)).slice(-2);}).join("");
+    if (HASHES.indexOf(h) >= 0) { store.premium = true; save(); home(); } else err.textContent = "Code incorrect. Vérifie et réessaie.";
+  } catch(e) { err.textContent = "Impossible de vérifier ici. Ouvre le lien dans ton navigateur."; }
+}
+app.addEventListener("click", function(e){
+  var t = e.target.closest("button,a"); if (!t || t.tagName==="A") return;
+  var g = t.dataset.go;
+  if (t.dataset.i != null) start(+t.dataset.i);
+  else if (t.classList.contains("opt")) answer(+t.dataset.k);
+  else if (g==="home") home(); else if (g==="next") next(); else if (g==="premium") premium();
+  else if (g==="exam") startExam(); else if (g==="unlock") unlock();
+  else if (g==="again") { if (S.mode==="exam") startExam(); else start(DATA.indexOf(S.d)); }
+});
+home();
+</script>
+</body>
+</html>
